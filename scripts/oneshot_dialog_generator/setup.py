@@ -28,5 +28,5 @@ robot_dialog: AudioFileClip = AudioFileClip("assets/oneshot_dialog_generator/sou
 silent: AudioFileClip = robot_dialog.fx(volumex, 0)
 
 # get all face name
-for path in glob.glob("assets/oneshot_dialog_generator/faces/*.png"):
+for path in glob.glob("assets\\oneshot_dialog_generator\\faces\\*.png"):
     faces[path.split("\\")[1].split(".")[0]] = None
