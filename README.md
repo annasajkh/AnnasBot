@@ -1,2 +1,2 @@
 # AnnasBot
-updated version of my old bot AnnasNet
+updated version of my old bot Deax
