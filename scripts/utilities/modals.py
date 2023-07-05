@@ -1,4 +1,5 @@
 import nextcord
+import os
 
 from oneshot_dialog_generator.generate_video import generate_oneshot_dialog_video
 from utilities.utils import construct_exception_embed
@@ -11,7 +12,6 @@ class OneshotDialogGeneratorModal(nextcord.ui.Modal):
     
         self.dialog_text = nextcord.ui.TextInput(
             label="Dialog Text",
-            min_length=2,
             max_length=2048,
             placeholder="Write your dialog text here...",
             style=nextcord.TextInputStyle.paragraph,
@@ -20,8 +20,9 @@ class OneshotDialogGeneratorModal(nextcord.ui.Modal):
         self.add_item(self.dialog_text)
     
     async def callback(self, interaction: nextcord.Interaction) -> None:
-
         await interaction.response.defer()
+        
+        wait_message = await interaction.followup.send("Processing your request, please wait...")
 
         try:
             generate_oneshot_dialog_video(self.dialog_text.value)
@@ -31,3 +32,8 @@ class OneshotDialogGeneratorModal(nextcord.ui.Modal):
             embed = construct_exception_embed(exception)
 
             await interaction.followup.send(embed=embed)
+        
+        await wait_message.delete()
+
+        if os.path.exists("assets/generated_results/oneshot_dialog_result.mp4"):
+            os.remove("assets/generated_results/oneshot_dialog_result.mp4")
