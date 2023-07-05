@@ -17,8 +17,7 @@ def generate_images_and_audio_clips(textboxdata_list: list[TextBoxData]) -> tupl
     # if the face is not loaded yet then load it but if it's already loaded then don't load it again
     for textboxdata in textboxdata_list:
         try:
-            if faces[textboxdata.face_name] == None:
-                faces[textboxdata.face_name] = Image.open(f"assets/oneshot_dialog_generator/faces/{textboxdata.face_name}.png")
+            faces[textboxdata.face_name] = Image.open(f"assets/oneshot_dialog_generator/faces/{textboxdata.face_name}.png")
         except:
             raise Exception(f"\Face name \"{textboxdata.face_name}\" is not found. Please use command /oneshot_faces to see all of the available faces")
     
@@ -60,7 +59,7 @@ def generate_images_and_audio_clips(textboxdata_list: list[TextBoxData]) -> tupl
     
     # unload all the images so it doesn't eat up memory
     for textboxdata in textboxdata_list:
-        faces[textboxdata.face_name] = None
+        del faces[textboxdata.face_name]
     
 
     return images, audio_clips

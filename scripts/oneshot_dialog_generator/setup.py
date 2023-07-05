@@ -15,7 +15,7 @@ class TextBoxData:
 # character that should have robot sound
 robot_names: list[str] = ["en", "bookbot", "kelvin", "prophet", "proto", "gatekeeper", "rowbot", "silver","bot"]
 
-faces: dict[str, Image.Image] | None = {}
+faces: dict[str, Image.Image] = {}
 font: ImageFont.FreeTypeFont | None = None
 
 # load the sounds and set the volume
@@ -26,7 +26,3 @@ normal_dialog: AudioFileClip = AudioFileClip("assets/oneshot_dialog_generator/so
 robot_dialog: AudioFileClip = AudioFileClip("assets/oneshot_dialog_generator/sounds/robot_dialog.wav").fx(volumex, 0.2)
 
 silent: AudioFileClip = robot_dialog.fx(volumex, 0)
-
-# get all face name
-for path in glob.glob("assets\\oneshot_dialog_generator\\faces\\*.png"):
-    faces[path.split("\\")[1].split(".")[0]] = None
