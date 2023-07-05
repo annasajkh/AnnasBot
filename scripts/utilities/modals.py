@@ -20,13 +20,14 @@ class OneshotDialogGeneratorModal(nextcord.ui.Modal):
         self.add_item(self.dialog_text)
     
     async def callback(self, interaction: nextcord.Interaction) -> None:
-        self.dialog_text.value
+
+        await interaction.response.defer()
 
         try:
             generate_oneshot_dialog_video(self.dialog_text.value)
-            await interaction.send(file=nextcord.file.File("assets/generated_results/oneshot_dialog_result.mp4"))
+            await interaction.followup.send(file=nextcord.file.File("assets/generated_results/oneshot_dialog_result.mp4"))
 
         except Exception as exception:
             embed = construct_exception_embed(exception)
 
-            await interaction.send(embed=embed)
+            await interaction.followup.send(embed=embed)
