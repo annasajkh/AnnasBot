@@ -21,7 +21,7 @@ class OneshotDialogGeneratorModal(nextcord.ui.Modal):
     
     async def callback(self, interaction: nextcord.Interaction) -> None:
         await interaction.response.defer()
-        
+
         wait_message = await interaction.followup.send("Processing your request, please wait...")
 
         try:
@@ -34,6 +34,3 @@ class OneshotDialogGeneratorModal(nextcord.ui.Modal):
             await interaction.followup.send(embed=embed)
         
         await wait_message.delete()
-
-        if os.path.exists("assets/generated_results/oneshot_dialog_result.mp4"):
-            os.remove("assets/generated_results/oneshot_dialog_result.mp4")
