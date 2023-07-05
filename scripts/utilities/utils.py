@@ -3,6 +3,7 @@ from utilities.setup import *
 import nextcord
 import requests
 import random
+import traceback
 
 def construct_embed(
   title: str = None,
@@ -38,3 +39,8 @@ def get_urbandict_definition(word: str) -> str:
 def get_random_quote():
     response = requests.get("https://zenquotes.io/api/random").json()
     return response[0]["q"] + "\n\n-" + response[0]["a"]
+
+def construct_exception_embed(exception: Exception):
+      return construct_embed(title=f"Exception: {exception}",
+                             text=traceback.format_exc()[:2048],
+                             color=nextcord.Color.red())
