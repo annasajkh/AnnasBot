@@ -35,6 +35,9 @@ def generate_oneshot_dialog_video(dialog_text: str):
     # ["hello","oh"]
     data_dialogs.pop(0)
 
+    if len(data_dialogs) > 20:
+        raise Exception("Too many dialogs! max 20")
+
     if len(data_faces) != len(data_dialogs):
         raise Exception("data_faces and data_dialogs is not the same length")
 
@@ -68,7 +71,7 @@ def generate_oneshot_dialog_video(dialog_text: str):
         
         # maximum text per dialog
         if len(data_dialog_str.rstrip()) > 188:
-            raise Exception("Text is too long make new dialog to add more text")
+            raise Exception("Text is too long! make new dialog to add more text")
 
         # just in case strip the string "annas    " -> "annas"
         data_dialogs[i] = data_dialog_str.rstrip()
@@ -77,18 +80,13 @@ def generate_oneshot_dialog_video(dialog_text: str):
     for i in range(0,len(data_faces)):
         textboxdata_list.append(TextBoxData(data_faces[i].replace(":","").strip(),data_dialogs[i].strip()))
 
-
-    text_combined = "".join([textboxdata.text + " " for textboxdata in textboxdata_list])
     
     # filter text through 2 filters
     # if profanity.contains_profanity(text_combine):
     #     raise Exception("bot detect that there is bad word in your text please delete it")
     # elif predict([text_combine])[0] == 1:
     #     raise Exception("ai detect that there is bad word in your text please delete it")
-    
-    # maximum text length
-    if len(text_combined.replace(" " ,"")) > 5000:
-        raise Exception("Text is too long maximum characters is 1000")
+
 
     # constructs the video
     images, audioclips = constructs.generate_images_and_audio_clips(textboxdata_list)

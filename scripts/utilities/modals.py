@@ -12,7 +12,7 @@ class OneshotDialogGeneratorModal(nextcord.ui.Modal):
     
         self.dialog_text = nextcord.ui.TextInput(
             label="Dialog Text",
-            max_length=2048,
+            max_length=1024,
             placeholder="Write your dialog text here...",
             style=nextcord.TextInputStyle.paragraph,
         )
