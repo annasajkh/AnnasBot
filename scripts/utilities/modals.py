@@ -21,7 +21,7 @@ class OneshotDialogGeneratorModal(nextcord.ui.Modal):
     
     async def callback(self, interaction: nextcord.Interaction) -> None:
         await interaction.response.defer()
-
+        
         wait_message = await interaction.followup.send("Processing your request, please wait...")
 
         try:
