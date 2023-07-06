@@ -93,8 +93,17 @@ def generate_oneshot_dialog_video(dialog_text: str):
 
     textboxdata_list = None
     gc.collect()
-
-    audio = concatenate_audioclips(audioclips)
+    
+    try:
+        audio = concatenate_audioclips(audioclips)
+    except:
+        raise Exception("""Wrong format! you have to format it like this
+niko:
+hello everyone
+niko_speak:
+i'm a cat
+cedric:
+wha-""")
     clip: ImageSequenceClip = ImageSequenceClip(images, 30)
 
     images = None
