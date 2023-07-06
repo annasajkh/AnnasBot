@@ -43,6 +43,6 @@ def get_random_quote():
 def construct_exception_embed(exception: Exception):
       print(traceback.format_exc())
 
-      return construct_embed(title=f"Error",
-                             text={exception} ,
+      return construct_embed(title="Error",
+                             text=str(exception),
                              color=nextcord.Color.red())
