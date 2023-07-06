@@ -54,16 +54,20 @@ async def random_urbandict(interaction: nextcord.Interaction):
   name = "meme",
   description = "get random meme from reddit",
 )
-async def meme(interaction: nextcord.Interaction):
+async def meme(interaction: nextcord.Interaction,
+               subreddit: str = nextcord.SlashOption(required = False,
+                                                     description = "subreddit to get the meme from")):
   await interaction.response.defer()
 
   try:
-    random_meme = requests.get("https://meme-api.com/gimme").json()
+    random_meme = requests.get(f"https://meme-api.com/gimme/{subreddit}").json()
 
     embed = construct_embed(title=random_meme["title"] if "title" in random_meme else "",
                             color=nextcord.Color.blue(),
-                            text="by " + random_meme["author"] if "author" in random_meme else "")
+                            text=f"by {random_meme['author']} " if "author" in random_meme else "")
     
+    embed.url = random_meme["postLink"]s
+
     embed.set_image(random_meme["url"] if "url" in random_meme else "")
 
   except Exception as exception:
