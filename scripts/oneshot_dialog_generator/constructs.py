@@ -20,7 +20,7 @@ def generate_images_and_audio_clips(textboxdata_list: list[TextBoxData]) -> tupl
             if not textboxdata.face_name in faces.keys():
                 faces[textboxdata.face_name] = Image.open(f"assets/oneshot_dialog_generator/faces/{textboxdata.face_name}.png")
         except:
-            raise Exception(f"\Face name \"{textboxdata.face_name}\" is not found. Please use command /oneshot_faces to see all of the available faces")
+            raise Exception(f"Face name \"{textboxdata.face_name}\" is not found. Please use command /oneshot_faces to see all of the available faces")
     
     for textboxdata in textboxdata_list:
         # add a little more frames to match the sound
