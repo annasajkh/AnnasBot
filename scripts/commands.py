@@ -66,7 +66,7 @@ async def meme(interaction: nextcord.Interaction,
                             color=nextcord.Color.blue(),
                             text=f"by {random_meme['author']} " if "author" in random_meme else "")
     
-    embed.url = random_meme["postLink"]s
+    embed.url = random_meme["postLink"]
 
     embed.set_image(random_meme["url"] if "url" in random_meme else "")
 
