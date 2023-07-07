@@ -27,17 +27,14 @@ wha-
         self.add_item(self.dialog_text)
     
     async def callback(self, interaction: nextcord.Interaction) -> None:
-        await interaction.response.defer()
-        
-        wait_message = await interaction.followup.send("Processing your request, please wait...")
+        response_message: nextcord.PartialInteractionMessage = await interaction.response.send_message("Processing your request, please wait...")
 
         try:
             generate_oneshot_dialog_video(self.dialog_text.value)
-            await interaction.followup.send(file=nextcord.file.File("assets/generated_results/oneshot_dialog_result.mp4"))
+
+            await response_message.edit(content=None, file=nextcord.File("assets/generated_results/oneshot_dialog_result.mp4"))
 
         except Exception as exception:
             embed = construct_exception_embed(exception)
 
-            await interaction.followup.send(embed=embed)
-        
-        await wait_message.delete()
+            await response_message.edit(content=None, embed=embed)
