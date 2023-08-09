@@ -42,15 +42,15 @@ def generate_oneshot_dialog_video(dialog_text: str):
         raise Exception("data_faces and data_dialogs is not the same length")
 
     for i in range(0,len(data_dialogs)):
-
         # replace all whitespaces char with space and split it by space
-        data_dialog_arr = re.sub("\s+"," ",data_dialogs[i]).split(" ")
+        data_dialog_arr = re.sub("\s+", " ", data_dialogs[i]).split(" ")
         data_dialog_arr_temp = []
 
         # if there is a word that has a length greather than 47 then split it and add it to temp array
         for index in range(0,len(data_dialog_arr)):
             if len(data_dialog_arr[index]) > 47:
-                data_dialog_arr_temp.append(textwrap.wrap(data_dialog_arr[index],2))
+                for chunk in textwrap.wrap(data_dialog_arr[index], 47):
+                    data_dialog_arr_temp.append(chunk)
             else:
                 data_dialog_arr_temp.append(data_dialog_arr[index])
         
@@ -71,7 +71,7 @@ def generate_oneshot_dialog_video(dialog_text: str):
         
         # maximum text per dialog
         if len(data_dialog_str.rstrip()) > 188:
-            raise Exception("Text is too long! make new dialog to add more text")
+            raise Exception("dialog is too long! maximum text length for each dialog is 188")
 
         # just in case strip the string "annas    " -> "annas"
         data_dialogs[i] = data_dialog_str.rstrip()
