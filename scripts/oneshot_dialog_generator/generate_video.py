@@ -60,24 +60,24 @@ def generate_oneshot_dialog_video(dialog_text: str):
         data_dialog_str = ""
         temp_data_dialog = ""
 
-        auto_wrap_count = 0;
 
         for word in data_dialog_arr:
             # auto wrap stuff
             if len(temp_data_dialog + word) > 47:
                 data_dialog_str += '\n'
                 temp_data_dialog = ""
-                auto_wrap_count += 1
             
             temp_data_dialog += word + " "
             data_dialog_str += word + " "
         
+        auto_wrap_count = len(textwrap.wrap(data_dialog_str, 47))
+
         # maximum text per dialog
-        if len(data_dialog_str.rstrip()) > 188 + auto_wrap_count:
+        if len(data_dialog_str.strip()) > 190 + auto_wrap_count:
             raise Exception("dialog is too long! maximum text length for each dialog is 188")
 
         # just in case strip the string "annas    " -> "annas"
-        data_dialogs[i] = data_dialog_str.rstrip()
+        data_dialogs[i] = data_dialog_str.strip()
     
     # build the text data replace the : with nothing and also strip it just in case
     for i in range(0,len(data_faces)):
