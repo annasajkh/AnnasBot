@@ -4,12 +4,11 @@ from utilities.modals import OneshotDialogGeneratorModal
 
 @bot.slash_command(
   name="urbandict",
-  description="define a word using urban dictionary API",
+  description="define a word using urban dictionary API"
 )
 async def urbandict(
   interaction: nextcord.Interaction,
-  word: str = nextcord.SlashOption(required=True,
-                                   description="word or symbol to be define")
+  word: str = nextcord.SlashOption(required=True, description="word or symbol to be define")
 ):
   await interaction.response.defer()
 
@@ -52,11 +51,10 @@ async def random_urbandict(interaction: nextcord.Interaction):
 
 @bot.slash_command(
   name="meme",
-  description="get random meme from reddit",
+  description="get random meme from reddit"
 )
 async def meme(interaction: nextcord.Interaction,
-               subreddit: str = nextcord.SlashOption(required=False,
-                                                     description="subreddit to get the meme from")):
+               subreddit: str = nextcord.SlashOption(required=False, description="subreddit to get the meme from")):
   await interaction.response.defer()
 
   try:
@@ -79,7 +77,7 @@ async def meme(interaction: nextcord.Interaction,
 
 @bot.slash_command(
   name="niko",
-  description="niko!",
+  description="niko!"
 )
 async def niko(interaction: nextcord.Interaction):
   await interaction.response.defer()
@@ -97,14 +95,13 @@ async def niko(interaction: nextcord.Interaction):
 
 @bot.slash_command(
   name="random_quote",
-  description="get random quote using zenquotes API",
+  description="get random quote using zenquotes API"
 )
 async def random_quote(interaction: nextcord.Interaction):
   await interaction.response.defer()
 
   try:
-    embed = construct_embed(text=get_random_quote(),
-                            color=nextcord.Color.green())
+    embed = construct_embed(text=get_random_quote(), color=nextcord.Color.green())
     
   except Exception as exception:
     embed = construct_exception_embed(exception)
@@ -115,11 +112,10 @@ async def random_quote(interaction: nextcord.Interaction):
 
 @bot.slash_command(
   name="number_fact",
-  description="get some fact about numbers using Numbers API",
+  description="get some fact about numbers using Numbers API"
 )
 async def number_fact(interaction: nextcord.Interaction,
-                      number: int = nextcord.SlashOption(required=True, 
-                                                         description="the number")):
+                      number: int = nextcord.SlashOption(required=True, description="the number")):
 
   await interaction.response.defer()
 
@@ -136,7 +132,7 @@ async def number_fact(interaction: nextcord.Interaction,
 
 @bot.slash_command(
   name="oneshot_dialog_generator",
-  description="oneshot dialog generator",
+  description="oneshot dialog generator"
 )
 async def oneshot_dialog_generator(
   interaction: nextcord.Interaction
@@ -155,7 +151,7 @@ async def oneshot_dialog_generator(
 
 @bot.slash_command(
   name="oneshot_faces",
-  description="see all available faces for /oneshot_dialog_gen",
+  description="see all available faces for /oneshot_dialog_gen"
 )
 async def oneshot_faces(
   interaction: nextcord.Interaction
