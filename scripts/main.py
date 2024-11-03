@@ -5,4 +5,4 @@ import os
 try:
     bot.run(os.getenv("BOT_TOKEN"))
 except Exception as exception:
-    print("Error: {exception}")
+    print(f"Error: {exception}")

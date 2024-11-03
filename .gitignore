@@ -1,5 +1,4 @@
 venv/
-.env
 .idea
 scripts/__pycache__/
 scripts/utilities/__pycache__/
