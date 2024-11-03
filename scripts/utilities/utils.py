@@ -1,5 +1,3 @@
-from utilities.setup import *
-
 import nextcord
 import requests
 import random
@@ -25,8 +23,7 @@ def construct_embed(
 
 
 def get_urbandict_definition(word: str) -> str:
-  results = requests.get(
-    f"http://api.urbandictionary.com/v0/define?term={word}").json()["list"]
+  results = requests.get(f"http://api.urbandictionary.com/v0/define?term={word}").json()["list"]
 
   if len(results) == 0:
     raise Exception(

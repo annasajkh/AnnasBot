@@ -1,8 +1,7 @@
 import nextcord
-import os
 
-from oneshot_dialog_generator.generate_video import generate_oneshot_dialog_video
-from utilities.utils import construct_exception_embed
+from scripts.oneshot_dialog_generator.generate_video import generate_oneshot_dialog_video
+from scripts.utilities.utils import construct_exception_embed
 
 class OneshotDialogGeneratorModal(nextcord.ui.Modal):
     def __init__(self):

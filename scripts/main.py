@@ -1,6 +1,5 @@
 from commands import *
 
-import time
 import os
 
 try:

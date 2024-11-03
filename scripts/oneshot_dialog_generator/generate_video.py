@@ -2,12 +2,11 @@ import gc
 import re
 import textwrap
 
-from moviepy.video.io.ImageSequenceClip import ImageSequenceClip
 from PIL import ImageFont
 from moviepy.editor import *
 
-import oneshot_dialog_generator.constructs as constructs
-from oneshot_dialog_generator.constructs import TextBoxData
+import scripts.oneshot_dialog_generator.constructs as constructs
+from scripts.oneshot_dialog_generator.constructs import TextBoxData
 
 
 def generate_oneshot_dialog_video(dialog_text: str):
