@@ -2,3 +2,4 @@ venv/
 .idea
 scripts/__pycache__/
 scripts/utilities/__pycache__/
+scripts/oneshot_dialog_generator/__pycache__/
