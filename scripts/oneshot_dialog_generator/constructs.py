@@ -1,4 +1,7 @@
 from scripts.oneshot_dialog_generator.setup import *
+from PIL import ImageDraw
+from numpy import array
+import numpy as np
 
 def build_frame(face_name: str | None = None, text: str = "") -> np.ndarray:
     image: Image.Image = paste_face(textbox_background, faces[face_name], (496, 17))
@@ -8,9 +11,7 @@ def build_frame(face_name: str | None = None, text: str = "") -> np.ndarray:
 
     return array(image)
 
-
-def generate_images_and_audio_clips(textboxdata_list: list[TextBoxData]) -> tuple[
-    list[np.ndarray], list[AudioFileClip]]:
+def generate_images_and_audio_clips(textboxdata_list: list[TextBoxData]) -> tuple[list[np.ndarray], list[AudioFileClip]]:
     images: list[np.ndarray] = []
     audio_clips: list[AudioFileClip] = []
 
@@ -18,11 +19,9 @@ def generate_images_and_audio_clips(textboxdata_list: list[TextBoxData]) -> tupl
     for textboxdata in textboxdata_list:
         try:
             if not textboxdata.face_name in faces.keys():
-                faces[textboxdata.face_name] = Image.open(
-                    f"assets/oneshot_dialog_generator/faces/{textboxdata.face_name}.png")
+                faces[textboxdata.face_name] = Image.open(f"assets/oneshot_dialog_generator/faces/{textboxdata.face_name}.png")
         except:
-            raise Exception(
-                f"Face name \"{textboxdata.face_name}\" is not found. Please use command /oneshot_faces to see all of the available faces")
+            raise Exception(f"Face name \"{textboxdata.face_name}\" is not found. Please use command /oneshot_faces to see all of the available faces")
 
     for textboxdata in textboxdata_list:
         # add a little more frames to match the sound
@@ -65,9 +64,7 @@ def generate_images_and_audio_clips(textboxdata_list: list[TextBoxData]) -> tupl
 
 
 # paste the face to the textbox in the correct location
-def paste_face(background_image: Image.Image,
-               face_image: Image.Image,
-               box: tuple[int, int]) -> Image.Image:
+def paste_face(background_image: Image.Image, face_image: Image.Image, box: tuple[int, int]) -> Image.Image:
     background_image: Image.Image = background_image.convert("RGBA")
     face_image: Image.Image = face_image.convert("RGBA")
 

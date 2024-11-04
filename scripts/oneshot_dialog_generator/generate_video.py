@@ -89,7 +89,6 @@ def generate_oneshot_dialog_video(dialog_text: str):
     # elif predict([text_combine])[0] == 1:
     #     raise Exception("ai detect that there is bad word in your text please delete it")
 
-
     # constructs the video
     images, audioclips = constructs.generate_images_and_audio_clips(textboxdata_list)
 
